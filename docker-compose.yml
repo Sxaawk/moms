@@ -1,7 +1,7 @@
 services:
   bot:
     build: .
-    container_name: titanbot
+    container_name: moms
     restart: unless-stopped
     environment:
       - NODE_ENV=production
@@ -14,7 +14,7 @@ services:
       db:
         condition: service_healthy
     networks:
-      - titan-network
+      - moms-network
 
   db:
     image: postgres:15-alpine
@@ -32,10 +32,10 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - titan-network
+      - moms-network
 
 networks:
-  titan-network:
+  moms-network:
     driver: bridge
 
 volumes:
